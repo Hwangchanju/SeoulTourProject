@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+#daumRoughmapContainer1628091274050{
+	max-width:1000px;
+	margin:0 auto;
+	margin-bottom:20px;
+}
+
+#daumRoughmapContainer1628091274050 p{
+	margin-left:20px;
+	font-size:12px;
+	font-weight:bold;
+}

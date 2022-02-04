@@ -1,0 +1,526 @@
+@charset "UTF-8";
+
+body{
+   background-color:white; /* 본문 배경색*/
+   margin:0px; /*마진 초기화*/
+   padding:0px; /*패딩 초기화*/
+   font-size:1em; /*본문 글씨크기*/
+   line-height:1.2em; /*줄높이 : 기본값 1.2em*/
+   color:black; /*글씨색*/
+}
+
+#wrap{
+   max-width:1100px;
+   margin:0 auto;
+   height:auto;
+   overflow:hidden;
+}
+
+.section input[id*="slide"]{
+   display:none;
+}
+.section .slidewrap{
+   width:100%;
+   max-height:420px;
+   overflow:hidden;
+}
+
+#wrap p{
+   margin-left:15px;
+   font-size:33px;
+   font-weight:bold;
+}
+
+.section .slidelist{
+   white-space:nowrap;
+   font-size:0;
+   margin:0px;
+   padding:0px;
+}
+
+.section .slidelist li{
+   display:inline-block;
+   vertical-align:middle;
+   width:100%;
+   transition:all .4s;
+}
+
+.slidebutton{
+   display:block;
+   position:relative;
+}
+
+.slidebutton img{
+   width:100%;
+   max-height:500px;
+}
+
+.slidebutton label{
+   position:absolute;
+   z-index:10;
+   top:50%;
+   transform:translateY(-50%);
+   padding:30px;
+   cursor:pointer;
+}
+
+.slidebutton .img_title{
+   z-index:1;
+   position:absolute;
+   top:320px;
+   left:280px;
+   font-size:40px;
+   font-weight:bold;
+   color:white;
+   text-align:center;
+}
+
+.slidebutton .img_cont{
+   z-index:1;
+   position:absolute;
+   top:360px;
+   left:280px;
+   font-size:30px;
+   font-weight:bold;
+   color:white;
+   text-align:center;
+}
+
+.slidebutton .left{
+   left:30px;
+   background:url('../../images/travel/left.png') center center / 100% no-repeat;
+}
+
+.slidebutton .right{
+   right:30px;
+   background:url('../../images/travel/right.png') center center / 100% no-repeat;
+}
+
+.section [id="slide01"]:checked ~ .slidewrap .slidelist li{transform:translateX(0%);}
+.section [id="slide02"]:checked ~ .slidewrap .slidelist li{transform:translateX(-100%);}
+.section [id="slide03"]:checked ~ .slidewrap .slidelist li{transform:translateX(-200%);}
+ 
+#district_tab{
+   max-width:1100px;
+   margin:0 auto;
+}
+
+#district_tab input[name="tab"]{
+   display:none;
+}
+
+#district_tab input[name="tab"] ~ label,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab11"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab12"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab13"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab14"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab15"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab16"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab17"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab18"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab19"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab20"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab21"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab22"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab23"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab24"],
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab25"] {
+   display: inline-block;
+   text-align: center;
+   width: 8.7%;
+   line-height: 2em;
+   border: 1px solid #ccc;
+   font-size: .9em;
+   font-weight: 700;
+   font-variant: small-caps;
+   border-radius: 3px 3px;
+   color:#777;
+   margin-top: 10px;
+   position:relative;
+}
+
+#district_tab input[id="tab01"]:checked ~ label[for="tab01"],
+#district_tab input[id="tab02"]:checked ~ label[for="tab02"],
+#district_tab input[id="tab03"]:checked ~ label[for="tab03"],
+#district_tab input[id="tab04"]:checked ~ label[for="tab04"],
+#district_tab input[id="tab05"]:checked ~ label[for="tab05"],
+#district_tab input[id="tab06"]:checked ~ label[for="tab06"],
+#district_tab input[id="tab07"]:checked ~ label[for="tab07"],
+#district_tab input[id="tab08"]:checked ~ label[for="tab08"],
+#district_tab input[id="tab09"]:checked ~ label[for="tab09"],
+#district_tab input[id="tab10"]:checked ~ label[for="tab10"],
+#district_tab input[id="tab11"]:checked ~ #tab_hidden label[for="tab11"],
+#district_tab input[id="tab12"]:checked ~ #tab_hidden label[for="tab12"],
+#district_tab input[id="tab13"]:checked ~ #tab_hidden label[for="tab13"],
+#district_tab input[id="tab14"]:checked ~ #tab_hidden label[for="tab14"],
+#district_tab input[id="tab15"]:checked ~ #tab_hidden label[for="tab15"],
+#district_tab input[id="tab16"]:checked ~ #tab_hidden label[for="tab16"],
+#district_tab input[id="tab17"]:checked ~ #tab_hidden label[for="tab17"],
+#district_tab input[id="tab18"]:checked ~ #tab_hidden label[for="tab18"],
+#district_tab input[id="tab19"]:checked ~ #tab_hidden label[for="tab19"],
+#district_tab input[id="tab20"]:checked ~ #tab_hidden label[for="tab20"],
+#district_tab input[id="tab21"]:checked ~ #tab_hidden label[for="tab21"],
+#district_tab input[id="tab22"]:checked ~ #tab_hidden label[for="tab22"],
+#district_tab input[id="tab23"]:checked ~ #tab_hidden label[for="tab23"],
+#district_tab input[id="tab24"]:checked ~ #tab_hidden label[for="tab24"],
+#district_tab input[id="tab25"]:checked ~ #tab_hidden label[for="tab25"]{
+   background:#aaa;
+   color:#000;
+}
+
+#district_tab input[name="tab"] ~ label:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab11"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab12"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab13"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab14"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab15"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab16"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab17"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab18"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab19"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab20"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab21"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab22"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab23"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab24"]:hover,
+#district_tab input[name="tab"] ~ #tab_hidden label[for="tab25"]:hover{
+   cursor:pointer;
+   color:#000;
+}
+
+.tab_cont{
+   max-width:1100px;
+   max-height:600px;
+   margin:0 auto;
+   margin-top:30px;
+}
+/* #district_tab input[id="tab01"]:checked ~ .con01{display:block;}
+#district_tab input[id="tab02"]:checked ~ .con02{display:block;}
+#district_tab input[id="tab03"]:checked ~ .con03{display:block;}
+#district_tab input[id="tab04"]:checked ~ .con04{display:block;}
+#district_tab input[id="tab05"]:checked ~ .con05{display:block;}
+#district_tab input[id="tab06"]:checked ~ .con06{display:block;}
+#district_tab input[id="tab07"]:checked ~ .con07{display:block;}
+#district_tab input[id="tab08"]:checked ~ .con08{display:block;}
+#district_tab input[id="tab09"]:checked ~ .con09{display:block;}
+#district_tab input[id="tab10"]:checked ~ .con10{display:block;}
+#district_tab input[id="tab11"]:checked ~ .con11{display:block;}
+#district_tab input[id="tab12"]:checked ~ .con12{display:block;}
+#district_tab input[id="tab13"]:checked ~ .con13{display:block;}
+#district_tab input[id="tab14"]:checked ~ .con14{display:block;}
+#district_tab input[id="tab15"]:checked ~ .con15{display:block;}
+#district_tab input[id="tab16"]:checked ~ .con16{display:block;}
+#district_tab input[id="tab17"]:checked ~ .con17{display:block;}
+#district_tab input[id="tab18"]:checked ~ .con18{display:block;}
+#district_tab input[id="tab19"]:checked ~ .con19{display:block;}
+#district_tab input[id="tab20"]:checked ~ .con20{display:block;}
+#district_tab input[id="tab21"]:checked ~ .con21{display:block;}
+#district_tab input[id="tab22"]:checked ~ .con22{display:block;}
+#district_tab input[id="tab23"]:checked ~ .con23{display:block;}
+#district_tab input[id="tab24"]:checked ~ .con24{display:block;}
+#district_tab input[id="tab25"]:checked ~ .con25{display:block;} */
+
+.tab_cont a{
+   position:relative;
+}
+
+.tab_cont a img{
+   width:40%;
+   height:340px;
+   margin-top:10px;
+   margin-left:3%;
+   margin-bottom:10px;
+}
+
+.tab_cont a .img_title{
+   z-index:1;
+   position:absolute;
+   top:-80px;
+   left:60px;
+   font-size:30px;
+   font-weight:bold;
+   color:white;
+   text-align:left;
+   line-height:30px;
+   overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+   width:330px;
+}
+
+.tab_cont a .img_cont{
+   z-index:1;
+   position:absolute;
+   top:-40px;
+   left:58px;
+   font-size:20px;
+   font-weight:bold;
+   color:white;
+   text-align:left;
+   line-height:25px;
+   overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+   width:330px;
+}
+
+#district_tab #tab_hidden{
+   display:none;
+}
+ 
+.clear{
+   content:'';
+     display:block;
+     clear:both;
+}
+
+#tog_btn{
+   border:1px solid black;
+   border-radius:3px 3px;
+   width:5%;
+   text-align:center;
+   line-height:30px;
+   color:#E9EAEB;
+   float:right;
+   position:relative;
+   top:10px;
+   font-size:14px;
+   font-weight:700;
+   background: linear-gradient(0deg, rgba(96,9,240,1) 0%, rgba(129,5,240,1) 100%);
+}
+
+#tog_btn:hover{
+   cursor:pointer;
+   box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
+#season_tab{
+   max-width:1100px;
+   margin:0 auto;
+   margin-bottom:30px;
+}
+
+#season_tab p{
+   margin-left:15px;
+   font-size:33px;
+   font-weight:bold;
+}
+
+#season_tab input[name="s_tab"]{
+   display:none;
+}
+
+#season_title{
+   /* border:2px solid #0000FF;
+   border-radius:5px; */
+   padding-bottom:12px;
+   margin-bottom:30px;
+   margin-top:30px;
+}
+
+#season_title label{
+   display:inline-block;
+   text-align:center;
+   width:24%;
+   line-height:2em;
+   font-size:1.2em;
+   color:#323232;
+   margin-top:10px;
+   font-weight:500;
+   font-variant:small-caps;
+}
+
+#season_tab input[id="s_tab01"]:checked ~ #season_title label[for="s_tab01"]{
+   color:#000;
+   font-size:1.3em;
+}
+
+#season_tab input[id="s_tab02"]:checked ~ #season_title label[for="s_tab02"]{
+   color:#000;
+   font-size:1.3em;
+}
+
+#season_tab input[id="s_tab03"]:checked ~ #season_title label[for="s_tab03"]{
+   color:#000;
+   font-size:1.3em;
+}
+
+#season_tab input[id="s_tab04"]:checked ~ #season_title label[for="s_tab04"]{
+   color:#000;
+   font-size:1.3em;
+}
+
+#season_tab #season_title label:hover{
+   cursor:pointer;
+   font-size:1.3em;
+}
+
+.s_cont{
+   max-width:1100px;
+   max-height:600px;
+   margin:0 auto;
+   
+}
+
+/* #season_tab input[id="s_tab01"]:checked ~ .s_con01{display:block;}
+#season_tab input[id="s_tab02"]:checked ~ .s_con02{display:block;}
+#season_tab input[id="s_tab03"]:checked ~ .s_con03{display:block;}
+#season_tab input[id="s_tab04"]:checked ~ .s_con04{display:block;} */
+
+.s_cont a{
+   position:relative;
+}
+
+.s_cont a img{
+   width:29%;
+   height:270px;
+   margin-top:10px;
+   margin-left:3%;
+   margin-bottom:10px;
+}
+
+.s_cont a .img_title{
+   z-index:1;
+   position:absolute;
+   top:-80px;
+   left:60px;
+   font-size:27px;
+   font-weight:bold;
+   color:white;
+   text-align:left;
+   line-height:30px;
+   overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+   width:230px;
+}
+
+.s_cont a .img_cont{
+   z-index:1;
+   position:absolute;
+   top:-40px;
+   left:58px;
+   font-size:20px;
+   font-weight:bold;
+   color:white;
+   text-align:left;
+   line-height:25px;
+   overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+   width:230px;
+}
+
+#concert_tab{
+   max-width:1100px;
+   margin:0 auto;
+   margin-bottom:30px;
+}
+
+#concert_tab p{
+   margin-left:15px;
+   font-size:33px;
+   font-weight:bold;
+}
+
+
+#concert_tab input[name="c_tab"]{
+   display:none;
+}
+
+#concert_title{
+   /* border:2px solid #FF0000;
+   border-radius:5px; */
+   padding-bottom:12px;
+   margin-top:30px;
+   margin-bottom:50px;
+}
+
+#concert_title label{
+   display:inline-block;
+   text-align:center;
+   width:32%;
+   line-height:2em;
+   font-size:1.2em;
+   color:#323232;
+   margin-top:10px;
+   font-weight:500;
+   font-variant:small-caps;
+}
+
+#concert_tab input[id="c_tab01"]:checked ~ #concert_title label[for="c_tab01"]{
+   color:#000;
+   font-size:1.3em;
+}
+
+#concert_tab input[id="c_tab02"]:checked ~ #concert_title label[for="c_tab02"]{
+   color:#000;
+   font-size:1.3em;
+}
+
+#concert_tab input[id="c_tab03"]:checked ~ #concert_title label[for="c_tab03"]{
+   color:#000;
+   font-size:1.3em;
+}
+
+#concert_tab #concert_title label:hover{
+   cursor:pointer;
+   font-size:1.3em;
+}
+
+.c_cont{
+   max-width:1100px;
+   max-height:600px;
+   margin:0 auto;
+}
+
+.c_cont a{
+   position:relative;
+}
+
+.c_cont a img{
+   width:29%;
+   height:270px;
+   margin-top:10px;
+   margin-left:3%;
+   margin-bottom:10px;
+}
+
+.c_cont a .img_title{
+   z-index:1;
+   position:absolute;
+   top:-80px;
+   left:60px;
+   font-size:27px;
+   font-weight:bold;
+   color:white;
+   text-align:left;
+   line-height:30px;
+   overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+   width:230px;
+}
+
+.c_cont a .img_cont{
+   z-index:1;
+   position:absolute;
+   top:-40px;
+   left:58px;
+   font-size:20px;
+   font-weight:bold;
+   color:white;
+   text-align:left;
+   line-height:25px;
+   overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+   width:230px;
+}
+
+/* #concert_tab input[id="c_tab01"]:checked ~ .c_con01{display:block;}
+#concert_tab input[id="c_tab02"]:checked ~ .c_con02{display:block;}
+#concert_tab input[id="c_tab03"]:checked ~ .c_con03{display:block;} */

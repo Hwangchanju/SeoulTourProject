@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="Bbs2"><!-- 매퍼 네임스페이스명 Bbs 지정 -->
+
+<!-- 자료실 저장 -->
+<insert id="bbs2_in" >
+insert into bbs3 (bbs_no,bbs_name,bbs_title,bbs_pwd,bbs_cont,bbs_file,bbs_ref,bbs_step,bbs_level,bbs_date,bbs_category)
+values(bbs3_no_seq.nextval,#{bbs_name},#{bbs_title},#{bbs_pwd}, #{bbs_cont}, #{bbs_file}, bbs3_no_seq.nextval, 0, 0, sysdate,#{bbs_category})
+</insert>
+
+<!-- 총 레코드 갯수 -->
+<select id="bbs2_count" resultType="int">
+<!-- resultType은 반환 자료형 생략불가 -->
+select count(bbs_no) from bbs3
+<!-- count()함수는 총 레코드 개수를 구함. -->
+<where>
+<if test="find_field == ''"></if><!-- 검색 조건이 없는 경우 -->
+<if test="find_field == 'bbs_title'">
+bbs_title like #{find_name}
+</if>
+<if test="find_field=='bbs_cont'"> <!-- 검색조건이 내용인 경우 -->
+bbs_cont like #{find_name}
+</if>
+</where>
+</select>
+
+<!-- 자료실 목록 -->
+<select id="bbs2_list" resultType="bbs2">
+select * from ( select rowNum rNum,bbs_no,bbs_name,bbs_title,bbs_hit,bbs_ref,bbs_step,bbs_level,bbs_date,bbs_file from
+(select * from bbs3
+
+<where>
+<if test="find_field == ''"></if><!-- 검색 조건이 없는 경우 -->
+<if test="find_field == 'bbs_title'">
+bbs_title like #{find_name}
+</if>
+<if test="find_field=='bbs_cont'"> <!-- 검색조건이 내용인 경우 -->
+bbs_cont like #{find_name}
+</if>
+</where>
+
+order by bbs_no asc))
+where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+<!-- &gt;=은 >=이고, &lt;=는 <=를 뜻함. -->
+</select>
+
+<!-- 조회수 증가 -->
+<update id="bbs2_hi">
+update bbs3 set bbs_hit=bbs_hit+1 where bbs_no=#{bbs_no}
+</update>
+
+<!-- 내용보기 -->
+<select id="bbs2_co" resultType="bbs2">
+select * from bbs3 where bbs_no=#{bbs_no}
+</select>
+
+<!-- 자료실 수정 -->
+<update id="bbs2_edit">
+update bbs3 set bbs_name=#{bbs_name}, bbs_title=#{bbs_title}, bbs_cont=#{bbs_cont}, bbs_file=#{bbs_file}, bbs_category=#{bbs_category}
+where bbs_no=#{bbs_no}
+</update>
+
+<delete id="bbs2_del">
+delete from bbs3 where bbs_no=#{bbs_no}
+</delete>
+
+<select id="dist_list" resultType="bbs2">
+	select * from (select * from bbs3 where bbs_category like #{dist_category} order by bbs_hit desc)
+</select>
+	
+<select id="sea_list" resultType="bbs2">
+	select * from (select * from bbs3 where bbs_category like #{season_category} order by bbs_hit desc)
+</select>
+	
+<select id="con_list" resultType="bbs2">
+	select * from (select * from bbs3 where bbs_category like #{concert_category} order by bbs_hit desc)
+</select>
+
+</mapper>

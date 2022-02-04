@@ -1,0 +1,476 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic');
+@font-face {
+    font-family: 'Y_Spotlight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+	background-color:white; /* 본문 배경색*/
+	margin:0px; /*마진 초기화*/
+	padding:0px; /*패딩 초기화*/
+	font-size:1em; /*본문 글씨크기*/
+	line-height:1.2em; /*줄높이 : 기본값 1.2em*/
+	color:black; /*글씨색*/
+}
+/*헤더 설정*/
+#logo{
+	/*margin: 10px 680px 10px;*/
+	text-align:center;
+	height:180px; /*그림 높이 180px*/
+}
+header{
+	width:1100px;
+	margin:0 auto;
+	padding:0;
+}
+/*메뉴바 설정*/
+nav {
+	height:50px;
+	margin-top:70px;
+	background-color:white; /*메뉴바 뒷배경색 하얀색*/
+}
+.main{
+	margin: 0 auto; /*메뉴바 가운데 정렬 margin 0는 좌우 위아래 여백 0이고, auto는 중앙 정렬*/
+	width:1100px; /*메뉴바 너비*/
+	list-style:none; /*목록 앞 마크 제거*/
+	font-family: 'Nanum Gothic', sans-serif; /*글씨체 설정*/
+	font-size: 25px; /*글씨크기 설정*/
+	font-weight:bold; /*글씨체 진하게 설정*/
+}
+.main li{
+	float:left; /*수직목록을 수평목록으로 배치*/
+	width:30%; /*메뉴바를 3등분해서 사용*/
+	height:50px; /*높이 설정*/ 
+	line-height:50px; /*텍스트 중앙 정렬*/
+	text-align:center; /*텍스트 가운데 정렬*/
+}
+nav a{
+	display:block; /*목록마다 블록형으로 설정*/
+	text-decoration:none; /*하이퍼링크 밑줄선 제거*/
+	color:#505050; /*글씨색 설정*/
+	width:150px;/*너비 설정*/
+	display:inline-block; /*메뉴바안 텍스트 가운데 설정*/
+
+}
+nav a:hover{
+	background-image:url(../images/blue.gif); /*마우스 호버시 이미지 출력*/
+	background-repeat:repeat-x; /*x축으로 반복*/
+	background-position:bottom; /*이미지 밑에 배치*/
+	text-decoration:none;
+}
+.main li:hover .sub{
+	opacity: 1;
+    visibility: visible;
+}
+.sub{
+	margin:0 auto;
+	float:none;
+	background-color:white;
+	font-size:0;
+	border:1px solid black;
+	border-radius:10px;
+	position: relative;
+    opacity: 0;
+    visibility: hidden;
+    z-index:9999;
+    width: 190px;
+    box-shadow:3px 3px 3px grey;   
+}
+.sub li{
+	font-size:22px;
+	font-weight:600;
+	float:none;
+	height:70px;
+	list-style:none;
+
+}
+
+
+/*로그인 설정*/
+#login{
+	float:right; margin: 20px 64px 0px 0px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:25px;
+	word-spacing:20px;
+	
+}
+.clear{
+	clear:both;
+}
+#login a{
+	text-decoration : none;
+	color:#505050;
+}
+#login a:hover{
+	color:black;
+}
+#slide{
+	width:100%; height:450px;
+	position:relaitve;
+	z-index:1;
+}
+
+
+/*본문설정*/
+article #main_cont{
+	width:1100px; height:1000px;
+	text-align:center;
+}
+#thematext1{
+	margin-top:100px;
+	text-align:center;
+	font-family: 'Y_Spotlight';
+	font-size:37px;
+	word-spacing:-2px;
+	margin-bottom:-10px;
+}
+#thematext2{
+	/*margin:70px 0px 0px 715px;*/
+	text-align:center;
+	font-family: 'Y_Spotlight';
+	font-size:37px;
+	word-spacing:-2px;
+	height:50px;
+}
+#thema{
+	width:270px;
+	height:360px;
+	margin:0 auto;
+	border-spacing:60px 50px;
+}
+#text{
+	font-family: 'Y_Spotlight';
+	font-size:25px;
+}
+#thema img{
+	border:0px solid red;
+	border-radius:10px;
+	position:relative;
+}
+#thema a{
+	text-decoration:none;
+	color:black;
+	font-family: 'Y_Spotlight';
+}
+#thema span{
+	vertical-align:top;
+	font-family: 'Y_Spotlight';
+	dispaly:flex;
+	word-spacing:-3px;
+}
+#thema2 {
+	width:250px;
+	height:360px;
+	margin:0 auto;
+	border-spacing:50px 40px;
+
+}
+#thema2 img{
+	border:0px solid red;
+	border-radius:10px;
+	position:relative;
+}
+#thema2 a{
+	text-decoration:none;
+	color:black;
+	font-family: 'Y_Spotlight';
+}
+#thema2 span{
+	font-family: 'Y_Spotlight';
+	word-spacing:-3px;
+}
+#thema2 h2{
+	margin:0px 0px 15px 0px;
+}
+#main_cont2{
+	margin:0 auto;
+	margin-top:50px;
+	width:1300px;
+	height:1100px;
+	margin-bottom:100px;
+}
+#main_cont2 .boardtext{
+	text-align:center;
+	font-family: 'Y_Spotlight';
+	font-size:37px;
+	height:50px;
+	margin-bottom:-45px;
+}
+#main_cont2 .infotext{
+	margin-top:30px;
+	text-align:center;
+	font-family: 'Y_Spotlight';
+	font-size:37px;
+	height:50px;
+	margin-bottom:0px;
+}
+
+#main_cont2 .board{
+	width:100%;
+	heigth:420px;
+	text-align:center;
+	margin-bottom:100px;
+}
+
+#main_cont2 .info{
+	width:100%;
+	height:420px;
+}
+/* #board, #info{
+	float:left; width:500px; height:500px;
+	border:1px solid skyblue;
+	text-align:center;
+	font-size:30px;
+	
+} */
+.list_img .text{
+	font-size:50px;
+	color:white;
+	position:absolute;
+	margin-top:430px;
+	margin-left: 350px;
+	
+}
+.list_img{
+	width:100%;
+	height:550px;
+}
+.list_img img{
+	width:100%;
+	height:530px;
+}
+
+
+/* footer 설정*/
+footer{
+	height:485px;
+/* 	background-image:url(../images/footer/good.png);
+	background-repeat:no-repeat;
+	background-position :685px 0px; */
+	margin-top:30px;
+	background-color:#f5f5f5;
+}
+footer #copy1{
+	padding:30px;
+	text-align:center;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	color:#505050;
+	height:10px;
+	margin-bottom:3px;
+}
+#social ul{
+	width:1100px; /*메뉴바 너비*/
+	height:70px;
+	list-style:none; /*목록 앞 마크 제거*/
+	font-family: 'Nanum Gothic', sans-serif; /*글씨체 설정*/
+	font-size: 17px; /*글씨크기 설정*/
+	font-weight:bord; /*글씨체 진하게 설정*/
+	margin: 0 auto; /*메뉴바 가운데 정렬 margin 0는 좌우 위아래 여백 0이고, auto는 중앙 정렬*/	
+}
+#social ul li{
+	float:left; /*수직목록을 수평목록으로 배치*/
+	width:12%; /*메뉴바를 3등분해서 사용*/
+	height:50px; /*높이 설정*/ 
+	text-align:center;
+	line-height:55px;
+	display:block;
+}
+#social .blog{
+	background-image:url(../images/footer/블로그1.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+}
+#social .blog:hover{
+	background-image:url(../images/footer/블로그2.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+}
+
+#social .post{
+	background-image:url(../images/footer/포스트1.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+}
+#social .post:hover{
+	background-image:url(../images/footer/포스트2.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+}
+
+#social .facebook{
+	background-image:url(../images/footer/페이스북1.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+	width:165px;
+}
+#social .facebook:hover{
+	background-image:url(../images/footer/페이스북2.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+	width:165px;
+}
+#social .twitter{
+	background-image:url(../images/footer/트위터1.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+}
+#social .twitter:hover{
+	background-image:url(../images/footer/트위터2.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+}
+
+#social .kakao{
+	background-image:url(../images/footer/카스1.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+	width:150px;
+	line-height:28px;
+	
+}
+#social .kakao:hover{
+	background-image:url(../images/footer/카스2.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+	width:150px;
+	line-height:28px;
+}
+#social .youtube{
+	background-image:url(../images/footer/유투브1.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+}
+#social .youtube:hover{
+	background-image:url(../images/footer/유투브2.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+}
+#social .insta{
+	background-image:url(../images/footer/인스타1.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+	width:135px;
+	line-height:28px;
+}
+#social .insta:hover{
+	background-image:url(../images/footer/인스타2.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+	width:135px;
+	line-height:28px;
+}
+#social .odii{
+	background-image:url(../images/footer/오디1.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+	width:130px;
+}
+#social .odii:hover{
+	background-image:url(../images/footer/오디2.png);
+	background-repeat:no-repeat;
+	background-size: 45px 45px;
+	background-position:0px 5px;
+	font-weight:bold;
+	width:130px;
+}
+#social a{
+	display:block; /*목록마다 블록형으로 설정*/
+	text-decoration:none; /*하이퍼링크 밑줄선 제거*/
+	width:150px;/*너비 설정*/
+	color:#666;
+}
+#partner{
+	width:1070px;
+	height:100px;
+	margin:0 auto;
+}
+#partner img{
+	opacity:0.75;
+}
+#term{
+	width:1130px;
+	margin:0 auto;
+}
+#terms{
+	width:900px;
+	border-spacing:0px;
+}
+#terms a{
+	text-decoration:none;
+	color:#949494;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:14px;
+	font-weight:1000;
+	letter-spacing:-1px;
+	opacity:0.9;
+}
+#copy2{
+
+	width:1060px;
+	margin: 0 auto;
+	color:#949494;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:14px;
+	font-weight:1000;
+	letter-spacing:-1px;
+	opacity:0.9;
+	text-align:left;
+}
+#source_wrap{
+	width:1060px;
+	margin :0 auto;
+}
+#source1{
+	width:55%;
+	box-sizing: border-box;
+	height:130px;
+	float:left;
+	text-align:left;
+}
+#source1 img{
+	margin-top:53px;
+	vertical-align:middle;
+
+}
+#source2{
+	width:45%;
+	box-sizing: border-box;
+	float:right;
+	text-align:right;
+	border-spacing:15px;
+	opacity:0.9;
+}

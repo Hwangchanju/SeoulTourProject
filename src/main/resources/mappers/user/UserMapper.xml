@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.spring.project.dao.user.IUserMapper">
+ 
+ <resultMap id="contentMap" type="cont">
+ 	<id property="content_no" column="content_no" />
+ 	<result property="content_id" column="content_id" />
+ 	<result property="content_name" column="content_name" />
+ 	<result property="content_title" column="content_title" />
+ 	<result property="content_local" column="content_local"/>
+ 	<result property="content_cont" column="content_cont" jdbcType="CLOB" javaType="java.lang.String" />
+ 	<result property="content_file" column="content_file" />
+ 	<result property="content_hit" column="content_hit" />
+ 	<result property="content_ref" column="content_ref" />
+ 	<result property="content_step" column="content_step" />
+ 	<result property="content_regdate" column="content_regdate" />
+ </resultMap>
+
+ 
+ 
+ <!-- 동적 sql 구문 -->
+ <sql id="findBy">
+ 	<if test="find_by == 'byEmail'">
+ 		WHERE user_mail_id = #{u.user_mail_id} and user_mail_domain = #{u.user_mail_domain}
+ 	</if>
+ 	<if test="find_by == 'byPhone'">
+ 		WHERE user_phone = #{u.user_phone}
+ 	</if>
+ </sql>
+ 
+ <sql id="search">
+ 	<if test="condition == 'title'">
+ 		WHERE content_title LIKE '%'||#{keyword}||'%'
+ 	</if>
+ 	<if test="condition == 'content'">
+ 		WHERE content_cont LIKE '%'||#{keyword}||'%'
+ 	</if>
+ 	<if test="condition == 'titleContent'">
+ 		WHERE content_title LIKE '%'||#{keyword}||'%'
+ 		OR content_cont LIKE '%'||#{keyword}||'%'
+ 	</if>
+ 	<if test="condition == 'local'">
+ 		WHERE content_local LIKE '%'||#{keyword}||'%' 
+ 	</if>
+ </sql>
+ 
+ <!-- 회원가입 -->
+ <insert id="u_join" parameterType="user">
+ 	INSERT INTO users (user_id, user_pwd, user_name, user_zip, user_addr, user_addr2, user_phone, user_mail_id, user_mail_domain, user_regdate, user_state)
+ 	VALUES (#{user_id}, #{user_pwd}, #{user_name}, #{user_zip}, #{user_addr}, #{user_addr2} , #{user_phone}, #{user_mail_id}, #{user_mail_domain}, sysdate, #{user_state})
+ </insert>
+ 
+ <!-- 아이디 중복 체크 기능 -->
+ <select id="u_checkIdDuplicate" resultType="int">
+ 	 SELECT COUNT(*) FROM users WHERE user_id = #{user_id}
+ </select>
+ 
+ <!-- 회원 정보 조회 -->
+ <select id="u_selectOne" resultType="user">
+ 	SELECT * FROM users WHERE user_id = #{user_id}
+ </select>
+ 
+ 
+ <!-- 회원가입 시 이메일/전화번호 존재 여부 체크 -->
+  <select id="u_selectPhoneEmail" resultType="user" parameterType="user">
+ 	SELECT * FROM users WHERE user_phone =#{user_phone} OR (user_mail_id = #{user_mail_id} AND user_mail_domain = #{user_mail_domain})
+ </select>
+ 
+ 
+ <!-- 마이페이지 수정-->
+ <update id="u_updateMyPage" parameterType="user">
+ 	UPDATE users SET user_pwd = #{user_pwd}, user_name=#{user_name}, user_zip=#{user_zip}, user_addr=#{user_addr}, user_addr2=#{user_addr2}, user_phone=#{user_phone},
+ 	user_mail_id=#{user_mail_id}, user_mail_domain=#{user_mail_domain}
+ 	WHERE user_id=#{user_id}
+ </update>
+
+ 
+ <!-- 아이디 찾기   -->
+ <select id="u_findId" resultType="user">
+ 	SELECT user_name,user_id FROM users
+ 	<include refid="findBy"/> AND user_name = #{u.user_name}
+ </select>
+ 
+ 
+ <!-- 회원 임시 비번 수정 -->
+<update id="u_updatePw" parameterType="user">
+	UPDATE users SET user_pwd = #{user_pwd} WHERE user_id = #{user_id}
+</update>
+
+
+ <!-- 회원 탈퇴 -->
+<update id="u_delete">
+	UPDATE users SET user_state = 2, user_delcont = #{user_delcont}, user_deldate = sysdate WHERE user_id = #{user_id}
+</update>
+
+
+<!-- 커뮤니티 게시판-->
+
+<!-- 게시물 작성 -->
+<insert id="u_insertCont" parameterType="cont">
+	INSERT INTO user_content (content_no, content_id, content_name, content_title, content_local, content_cont, content_file, content_ref, content_step, content_regdate)
+	VALUES (content_no_seq.nextval, #{content_id}, #{content_name}, #{content_title}, #{content_local}, #{content_cont}, #{content_file}, content_no_seq.nextval, 0, sysdate)
+</insert>
+
+
+<!-- 게시물 내용으로 게시물 조회 -->
+<select id="u_selectCont" parameterType="cont" resultType="cont" resultMap="contentMap">
+	SELECT * FROM user_content where content_no =#{content_no}
+</select>
+
+<!--  게시판 목록 조회 : 업데이트순 -->
+<select id="u_ListCont" parameterType="searchvo" resultMap="contentMap">
+	SELECT * FROM
+	(
+		SELECT ROWNUM as rn, tbl.* FROM
+		(
+			SELECT content_no, content_id, content_title, content_file, content_local, content_hit, content_ref, content_step, content_regdate FROM user_content
+			<include refid="search"/> AND content_step = 0
+			ORDER BY content_no DESC
+		)tbl
+	)
+	
+	<![CDATA[
+	WHERE rn > (#{page}-1) * #{counterPerPage}
+	AND rn <= #{page} * #{counterPerPage}
+	]]>
+</select>
+
+
+<!-- 게시판 목록 조회 순 :  -->
+<select id="u_HitListCont" parameterType="searchvo" resultMap="contentMap">
+	SELECT * FROM
+	(
+		SELECT ROWNUM as rn, tbl.* FROM
+		(
+			SELECT content_no, content_id, content_title, content_file, content_local, content_hit, content_ref, content_step, content_regdate FROM user_content
+			<include refid="search"/> AND content_step = 0 AND content_file IS NOT NULL
+			ORDER BY content_hit DESC
+		)tbl
+	)
+	
+	<![CDATA[
+	WHERE rn > (#{page}-1) * #{counterPerPage}
+	AND rn <= #{page} * #{counterPerPage}
+	]]>
+</select>
+
+
+<select id="u_ContTotalCount" resultType="int">
+	SELECT count(*) FROM user_content
+	<include refid="search"/> AND content_step =0
+</select>
+
+
+<!-- 게시물 수정 -->
+<update id="u_editCont" parameterType="cont">
+	UPDATE user_content SET content_title = #{content_title}, content_local = #{content_local}, content_cont = #{content_cont}, content_file = #{content_file}
+	WHERE content_no = #{content_no}
+</update>
+
+<!-- 조회수 상승 -->
+<update id="u_updateHit" parameterType="int">
+	UPDATE user_content SET content_hit = content_hit+1 WHERE content_no = #{content_no}
+</update>
+
+<!-- 게시물 삭제 -->
+<delete id="u_deleteCont" parameterType="int">
+	DELETE FROM user_content WHERE content_no = #{content_no}
+</delete>
+
+<!-- 답글 삽입 -->
+<insert id="u_insertReply" parameterType="cont">
+	INSERT INTO user_content (content_no, content_id, content_name, content_title, content_cont, content_ref, content_step,content_level, content_regdate)
+	VALUES (content_no_seq.nextval, #{content_id}, #{content_name}, #{content_title}, #{content_cont}, #{content_ref}, #{content_step},#{content_level},sysdate)
+</insert>
+
+<!-- 답글 수정 -->
+<update id="u_editReply" parameterType="cont">
+	UPDATE user_content SET content_cont = #{content_cont}, content_regdate = sysdate WHERE content_no = #{content_no}
+</update>
+
+<!-- 답글 리스트 가져오기 -->
+<select id="u_selectReplies" parameterType="cont" resultMap="contentMap">
+	SELECT content_no, content_id, content_cont, content_ref, content_step, content_level, content_regdate FROM user_content WHERE content_ref = #{content_no} AND content_step = #{content_step}
+	ORDER BY content_regdate ASC
+
+</select>
+
+<!-- 답글  가져오기 -->
+<select id="u_selectReply" parameterType="int" resultMap="contentMap">
+	SELECT content_no, content_id, content_cont, content_ref, content_step, content_level, content_regdate FROM user_content WHERE content_no = #{content_no}
+</select>
+
+
+<select id="u_mypageListCont" parameterType="searchvo" resultMap="contentMap">
+	SELECT * FROM
+	(
+		SELECT ROWNUM as rn, tbl.* FROM
+		(
+			SELECT content_no, content_id, content_title, content_file, content_local, content_hit, content_ref, content_step, content_regdate FROM user_content
+			<include refid="search"/> AND content_id = #{content_id} AND content_step = 0
+			ORDER BY content_no DESC
+		)tbl
+	)
+	
+	<![CDATA[
+	WHERE rn > (#{page}-1) * #{counterPerPage}
+	AND rn <= #{page} * #{counterPerPage}
+	]]>
+</select>
+
+<select id="u_mypageContTotalCount" resultType="int">
+	SELECT count(*) FROM user_content
+	<include refid="search"/> AND content_id = #{content_id} AND content_step = 0
+</select>
+
+</mapper>

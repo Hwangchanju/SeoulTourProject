@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+      http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- aop 자동 프록시 설정 -->
+	<aop:aspectj-autoproxy />
+
+	<!-- 스프링 JDBC -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
+		<property name="username" value="week" />
+		<property name="password" value="week" />
+	</bean>
+
+	<!-- 스프링과 mybatis연결, mybatis 매퍼와 환경 설정 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" /><!-- setter()를 
+			통한 DI 의존성 주입 -->
+		<property name="configLocation"
+			value="classpath:/mybatis-config.xml" />
+		<!-- mybatis-config.xml 파일을 읽어옴. 이 파일의 기능은 데이터 저장빈 클래스의 객체명 별칭을 관리한다. -->
+		<property name="mapperLocations"
+			value="classpath:/mappers/**/*.xml" />
+		<!-- 쿼리문을 다루는 매퍼 태그를 포함한 xml파일 위치 -->
+	</bean>
+
+
+	<!-- 트랜잭션 적용 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven />
+	<!-- 트랜잭션 설정 애너테이션, @Transactional 애너테이션을 이용한 트랜잭션 관리가 가능함. -->
+
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate"
+		destroy-method="clearCache">
+		<!-- destroy-method="clearCache"는 임시 메모리를 비워서 데이터 베이스 연결을 해제 -->
+		<constructor-arg name="sqlSessionFactory"
+			ref="sqlSessionFactory" />
+		<!-- constructor-arg는 생성자를 통한 의존성 주입 -->
+	</bean>
+
+	<!-- DAOImpl의 @Repository 이 설정된 부분을 스프링에서 오토 스캔(자동으로 찾아서) 등록하게 함. -->
+	<context:component-scan
+		base-package="com.spring.project.dao" />
+
+	<!-- 비지니스 서비스 추가.=>오토 스캔 태그 추가(스프리에서 자동으로 찾아서 이 패키지 하위의 서비스는 알아서 등록) 서비스 
+		추가 이유 : 첫째, 컨트롤과 모델 DAO를 연결하는 중간 매개체 역할. 두번째, 고객의 추가 요구사항을 반영해서 개발 로직 코드를 
+		유연하게 작성 가능하게 한다.한마디로 고객의 추가요 구를 반영해서 서비스를 하는 것이다. 셋째, 스프리의 AOP를 통한 트랜잭션 적용 
+		핵심이다. 이렇게 함으로써 데이터의 일치성과 사이트의 신뢰도를 보장한다. -->
+	<context:component-scan
+		base-package="com.spring.project.service" />
+
+	<!-- aop 설정-> AOP를 XML 방식으로 설정할 때 사용 -->
+	<aop:config></aop:config>
+
+	<!-- 매퍼의 인터페이스를 스캔하는 설정 -->
+	<mybatis-spring:scan
+		base-package="com.spring.project.dao.user" />
+
+
+	<!-- gmail설정 -->
+	<bean id="mailSender2"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="*******" /> <!-- 자신의 이메일 아이디 -->
+		<property name="password" value="******" /> <!-- 자신의 비밀번호 -->
+		<!-- 보안연결 TLS과 관련된 설정 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- navermail설정 -->
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.naver.com" /> <!-- 메이서버 호스트 -->
+		<property name="port" value="465" /> <!-- 메이서버 포트번호 -->
+		<property name="username" value="whskadyd29" /> <!-- 자신의 이메일 아이디 -->
+		<property name="password" value="whskadyd!@#" /> <!-- 자신의 비밀번호 -->
+		<!-- 보안연결 SSL과 관련된 설정 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtps.checkserveridentity">true</prop>
+				<prop key="mail.smtps.ssl.trust">*</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans> 
+
+
+
+

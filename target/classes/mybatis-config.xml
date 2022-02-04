@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd" >
+
+<configuration>
+   <typeAliases>
+     <typeAlias type="com.spring.project.model.BbsVO" alias="bbs" />
+     <typeAlias type="com.spring.project.model.Bbs2VO" alias="bbs2" /><!-- BbsVO 빈클래스 객체 별칭명 bbs설정 -->
+     <typeAlias type="com.spring.project.model.UserVO" alias="user"/>
+      <typeAlias type="com.spring.project.model.AdminVO" alias="admin"/>
+      <typeAlias type="com.spring.project.model.ContVO" alias="cont"/>
+      <typeAlias type="com.spring.project.commons.PageVO" alias="page"/>
+      <typeAlias type="com.spring.project.commons.SearchVO" alias="searchvo"/>
+   </typeAliases>
+</configuration>

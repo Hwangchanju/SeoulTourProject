@@ -1,0 +1,398 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic');
+
+@font-face {
+	font-family: 'Y_Spotlight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#log-in-modal {
+	text-align: center;
+	margin: auto;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+#log-in-modal.modal-overlay {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: rgba(225, 225, 225, 0.25);
+	backdrop-filter: blur(1.5px);
+	-webkit-backdrop-filter: blur(1.5px);
+	z-index: 8;
+}
+
+/*
+.modal-dialog.modal-join-overlay {
+	width: 100%;
+	height: auto;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(1.5px);
+	-webkit-backdrop-filter: blur(1.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+/*
+.modal-content .modal-window {
+	background: lightblue;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(13.5px);
+	-webkit-backdrop-filter: blur(13.5px);
+	border-radius: 0px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	width: 600px;
+	height: auto;
+	position: relative;
+	top: auto;
+	padding: 10px;
+}
+*/
+/* 
+#log-in-modal .modal_layer {
+
+  width:100%;
+  height:100%;
+  z-index:-1;
+  position: absolute;
+  background: rgba(11,19,30,.37);
+  top: 0;
+  left: 0;
+
+}    */
+
+.join_content .join_window{
+	background: none;
+	width: 600px;
+	height: auto;
+	position: relative;
+	top: auto;
+	padding: 10px;
+	margin: 0px auto 100px auto;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+.modal_content .modal-window {
+	background: lightblue;
+	width: 400px;
+	height:600px;
+	position: relative;
+	top: auto;
+	padding: 10px;
+	margin: 100px auto 80px auto;
+}
+
+#modal .title {
+	padding-left: 10px;
+	display: inline;
+	color: black;
+	font-size: 1.2em;
+	position: center;
+}
+
+#modal .title h2 {
+	display: inline;
+}
+
+#modal .close-area {
+	display: inline;
+	float: right;
+	padding-right: 10px;
+	cursor: pointer;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+	border: none;
+	background: none;
+	font-size: 30px;
+}
+
+#modal #id_find {
+	text-align: right;
+	margin-right: 20px;
+	margin-top:10px;
+}
+
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+#modal .content {
+	background-color: #F3F3F3;
+	margin: 10px 20px;
+	padding: 10px;
+	border-radius: 10px;
+	color: black;
+}
+
+#modal .modal_btn {
+	background-color: #F3F3F3;
+	border-radius: 10px;
+	margin: 10px 20px;
+	padding:5px;
+	color: black;
+	text-align: center;
+	weight: 300px;
+}
+
+#modal .modal_btn a {
+	text-decoration: none;
+	color: black;
+	text-align: center;
+}
+
+#modal .modal_btn input {
+	border: none;
+	width: 90%;
+	height: auto;
+	background-color: #F3F3F3;
+	font-size:16px;
+	font-weight: bold;
+	color: black;
+	font-family: 'Nanum Gothic', sans-serif;
+	vertical-align: center;
+}
+
+#modal .content input {
+	border: none;
+	background-color: #F3F3F3;
+}
+
+#modal .content input:hover {
+	outline: none;
+	background-color: #F3F3F3;
+}
+
+#modal .content input:focus {
+	outline: none;
+	background-color: #F3F3F3;
+}
+
+#modal .logo_title {
+	color: #F3F3F3;
+}
+
+.join_update #join_update_table input {
+	background-color: #ECECEC;
+	border: none;
+	width: 100%;
+	height: 60%;
+}
+
+.join_update #join_update_table span {
+	width: 40%;
+}
+
+.join_update #join_update_table input:focus {
+	outline: none;
+}
+
+.join_update #join_update_table input:hover {
+	outline: none;
+}
+
+.join_update th, td, thead, tbody {
+	height: 100px;
+	vertical-align: middle;
+}
+
+.join_update 
+
+.login_btn input {
+	background: #2675AE;
+	border: white;
+	width: 610px;
+	height: 50px;
+	margin-right: -10px;
+	color: white;
+	font-size: 1.2em;
+	border-radius: 10px;
+	color: white;
+}
+
+#join_complete {
+	margin: auto;
+}
+
+.join_content #id {
+	width: 450px;
+	height: 40px;
+	background-color: #EBF3F6;
+	border: thin;
+}
+
+#join .join_btn {
+	
+}
+
+#join .join_content_list input {
+	width: 530px;
+	height: 40px;
+	background-color: #EBF3F6;
+	border: thin;
+}
+
+#find .find_btn_idPwd input {
+	width: 530px;
+	height: 40px;
+	background-color: #EBF3F6;
+	border: thin;
+}
+
+.find_btn {
+	background: #2675AE;
+	border: white;
+	width: 610px;
+	height: 50px;
+	margin-right: -10px;
+	color: white;
+	font-size: 1.2em;
+	border-radius: 10px;
+	color: white;
+}
+
+#identify_board {
+	width: 800px;
+	height: 200px;
+	border-width: 0px;
+	text-align: left;
+	padding-left: 30px;
+	padding-top: 30px;
+	margin: auto;
+	border: 0px gray solid;
+	font-size: 1.2em;
+}
+
+#find_complete {
+	height: 800px;
+	width: 800px;
+	margin: auto;
+}
+
+#find_complete .find_info {
+	width: 800px;
+	height: 500px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+#find_complete .find_info p {
+	font-size: 30px;
+	padding-left: -30px;
+	padding-top: 80px;
+}
+
+#find_complete .find_complete_btn .btns a {
+	color: white;
+	text-decoration: none;
+	text-align: center;
+}
+
+#find_complete .find_complete_btn .btns {
+	background: #2675AE;
+	width: 45%;
+	height: 50px;
+	margin-bottom: 0px;
+	color: white;
+	font-size: 1.2em;
+	display: inline-block;
+	border-radius: 10px;
+	border: white;
+	padding-top: 5px;
+	margin: auto auto auto 10px;
+	text-align: center;
+}
+
+#find_complete hr {
+	height: 10px;
+	background-color: #EBF3F6;
+	border: 0px;
+}
+
+#find hr {
+	width: 600px;
+	margin: auto;
+}
+
+.update_btn input {
+	background: #2675AE;
+	border: white;
+	width: 269px;
+	height: 50px;
+	margin: auto;
+	color: white;
+	font-size: 1.2em;
+	border-radius: 10px;
+	color: white;
+	float: left;
+}
+
+.join_content_list #delete {
+	text-decoration: none;
+	color: black;
+	float: right;
+	margin-right: 10px;
+}
+
+#clear {
+	clear: both;
+}
+
+/* 관리자 css*/
+.modal-content .a_modal-window {
+	background: #486AAE;
+	border: 0px solid rgba(255, 255, 255, 0.18);
+	width: 100%;
+	height:100%;
+	position: relative;
+	top: auto;
+	padding: 10px;
+	margin: auto;
+}
+
+.join_update_wrap {
+	width: 75%;
+	height: 100%;
+	margin-left: 50px;
+	padding: 0px 20px;
+	float: left;
+	line-height: 40px;
+	padding-right: -100px;
+	margin-top: -55px;
+	margin-bottom: 100px;
+}
+
+.sub_list_wrap {
+	width: 20%;
+	height: 850px;
+	margin: 20px auto auto auto;
+	float: left;
+	font-size: 20px;
+}
+
+.sub_list_wrap a:hover{
+	text-decoration: none;
+	border-bottom-style: none;
+	
+}
